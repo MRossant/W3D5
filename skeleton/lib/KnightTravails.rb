@@ -11,8 +11,13 @@ class KnightPathFinder
 
   end
 
-  def build_move_tree
-    
+  def build_move_tree(final_pos)
+    self.new_move_positions(@root_node)
+    unless @considered_positions.empty?
+      check = @considered_positions.shift
+      return check if check == final_pos
+
+    end
   end
 
   def new_move_positions(pos)
