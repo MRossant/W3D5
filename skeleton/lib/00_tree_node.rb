@@ -45,6 +45,19 @@ class PolyTreeNode
     nil
   end
 
+  def bfs(target_value)
+    arr = []
+    arr << self
+    until arr.empty?
+      check = arr.shift
+      return check if check.value == target_value
+      check.children.each {|child| arr<< child}
+    end
+
+    nil
+
+  end
+
 end # end PolyTreeNode Class
 
 #child2, child1, @parent=nil 
