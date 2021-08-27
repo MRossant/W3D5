@@ -32,6 +32,19 @@ class PolyTreeNode
     child_node.parent=nil
   end
 
+  def dfs(target_value)
+    return self if self.value == target_value
+    return nil if self.children.empty? 
+
+    self.children.each do |child|
+      # return child if child.value == target_value
+      temp = child.dfs(target_value)
+      return temp if temp != nil
+    end
+
+    nil
+  end
+
 end # end PolyTreeNode Class
 
 #child2, child1, @parent=nil 
@@ -39,3 +52,16 @@ end # end PolyTreeNode Class
 # poly = PolyTreeNode.new(2)
 # father = PolyTreeNode.new(5)
 # poly.parent=(father)
+
+# base case
+    # root_node.val == target_value, return root_node
+    # no children => return nil
+  # inductive case
+    # search children of root_node for the target_value
+    # iterate over children of node received as arg 
+      # call dfs on child, passing in the child and target_value
+        # store return value of this call in a variable
+          # nil => continue the search
+          # node => we found our node, return it! => stops the search
+    # return nil
+      # we searched the whole tree but didn't find target_value
