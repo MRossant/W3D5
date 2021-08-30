@@ -45,14 +45,19 @@ class KnightPathFinder
 
   def build_move_tree
     arr = [@root_node]
-    unless arr.empty?
-
+    # debugger
+    until arr.empty?
+      # debugger
       temp = arr.shift
+      # debugger
       arr_pos = self.new_move_positions(temp.value)
       arr_pos.each do |pos|
+        # debugger
         child = PolyTreeNode.new(pos)
+        # debugger
         temp.add_child(child)
         arr << child
+        # debugger
       end
       # self
     end
@@ -67,12 +72,15 @@ class KnightPathFinder
     #   possible_positions << temp
     # end
     possible_positions.each do |ele| 
-      if @considered_positions.any?(ele)
+      # debugger
+      if @considered_positions.include?(ele)
+        # debugger
         possible_positions.delete(ele)
       else
         @considered_positions << ele
       end
     end
+    # debugger
     possible_positions 
   end
 
@@ -80,17 +88,18 @@ class KnightPathFinder
 
 
   def find_path(end_pos)
-    return @root_node if @root_node.value == end_pos 
-    return nil if @root_node.children.empty?
+    # debugger
+    @root_node.dfs(end_pos)
+    # return @root_node if @root_node.value == end_pos 
+    # search_node = @root_node.
+    # return nil if @root_node.children.empty?
 
-    self.root_node.children.each do |child|
-      temp = child.find_path(end_pos)
-      return temp if temp != nil
-    end
+    # self.root_node.children.each do |child|
+    #   temp = child.find_path(end_pos)
+    #   return temp if temp != nil
+    # end
     
-    return nil
-
-
+    # return nil
   end
 
   def trace_path_back
