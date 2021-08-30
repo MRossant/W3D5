@@ -3,6 +3,8 @@ require_relative "00_tree_node.rb"
 class KnightPathFinder 
 
   def self.valid_moves(pos)
+    valid_moves_arr = []
+    
   end
 
   def initialize(position)
@@ -11,10 +13,10 @@ class KnightPathFinder
 
   end
 
-  def build_move_tree(final_pos)
+  def build_move_tree
     self.new_move_positions(@root_node)
     unless @considered_positions.empty?
-      check = @considered_positions.shift
+      queue << @considered_positions.shift
       return check if check == final_pos
 
     end
