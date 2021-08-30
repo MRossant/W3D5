@@ -76,5 +76,26 @@ class KnightPathFinder
     possible_positions 
   end
 
+#-----------------End Part 1-------------------
+
+
+  def find_path(end_pos)
+    return @root_node if @root_node.value == end_pos 
+    return nil if @root_node.children.empty?
+
+    self.root_node.children.each do |child|
+      temp = child.find_path(end_pos)
+      return temp if temp != nil
+    end
+    
+    return nil
+
+
+  end
+
+  def trace_path_back
+
+  end
+
 
 end #end KnightPathFinder
